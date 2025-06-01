@@ -8,10 +8,27 @@
 <body>
     <h1>Hi! I created this website to learn more about Javascript.</h1>
       <button onclick="sayHello()">Click Me!</button>
+
+      <p id="message">Button that changes...</p>
+      <button onclick="changeText()">Change Text</button>
+
+      <p>Counter: <span id="counter">0</span></p>
+      <button onclick="increase()">Increase</button>
+
     <script>
         function sayHello() {
             alert("Hello!");
         }
+
+        function changeText() {
+    document.getElementById("message").innerText = "Now it's changed!";
+        }
+
+          let count = 0;
+        function increase() {
+        count++;
+        document.getElementById("counter").innerText = count;
+    }
     </script>
 
      <style>
