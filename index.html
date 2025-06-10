@@ -22,6 +22,20 @@
 
       <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
 
+    <div>
+    <button onclick="saveData()">Save Name</button>
+    <button onclick="loadData()">Load Name</button>
+    </div>
+
+    <div id="animatedBox"></div>
+    <button onclick="animateBox()">Animate Box</button>
+
+    <div>
+    <p id="quote">Click for a random quote</p>
+    <button onclick="showRandomQuote()">Random Quote</button>
+    </div>
+
+
     <script>
         function sayHello() {
             alert("Hello!");
@@ -49,6 +63,47 @@
     function toggleDarkMode() {
     document.body.classList.toggle("dark-mode");
     }
+
+    function saveData() {
+    const name = document.getElementById('nameInput').value;
+    localStorage.setItem('userName', name);
+    alert('Name saved!');
+}
+
+function loadData() {
+    const savedName = localStorage.getItem('userName');
+    if (savedName) {
+        document.getElementById('nameInput').value = savedName;
+        alert('Loaded: ' + savedName);
+    } else {
+        alert('No saved data found');
+    }
+}
+
+function animateBox() {
+    const box = document.getElementById('animatedBox');
+    let position = 0;
+    
+    const interval = setInterval(function() {
+        position += 5;
+        box.style.left = position + 'px';
+        
+        if (position >= 200) {
+            clearInterval(interval);
+        }
+    }, 50);
+}
+
+function showRandomQuote() {
+    const quotes = [
+        "The only way to do great work is to love what you do.",
+        "Life is what happens to you while you're busy making other plans.",
+        "The future belongs to those who believe in the beauty of their dreams."
+    ];
+    
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    document.getElementById('quote').innerText = quotes[randomIndex];
+}
     </script>
 
      <style>
@@ -69,6 +124,14 @@
         background-color: #222;
         color: #eee;
         }
+
+        #animatedBox {
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    position: relative;
+    left: 0px;
+}
      </style>
     
 </body>
